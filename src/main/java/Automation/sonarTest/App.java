@@ -26,6 +26,12 @@ public class App {
 		}else {
 			System.out.println("Hello Adult");			
 		}
+    	
+    	if (age<18) {
+    		System.out.println("Hello Teen");	
+		}else {
+			System.out.println("Hello Adult");			
+		}
         
     }
 }
