@@ -1,0 +1,17 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="SUITE" verbose="1" thread-count="2"
+	parallel="methods">
+
+	<!-- ${environment} -->
+
+	<test name="TESTS">
+		<classes>
+			<class name="Automation.sonarTest.AppTest">
+				<methods>
+					<include name="t1" />
+					<include name="t2" /> 
+				</methods>
+			</class>
+		</classes>
+	</test>
+</suite>
