@@ -1,17 +1,17 @@
 package Automation.sonarTest;
 
-import org.testng.annotations.Test;
+import org.junit.Test;
 
-public class AppTest {
+public class AppTest{
 
 	@Test
-	private void t1() {
+	public void t1_test() {
 		App o = new App();
 		o.m1("Shailendra");
 	}
 	
 	@Test
-	private void t2() {
+	public void t2_test() {
 		App o = new App();
 		o.m2(18);
 	}

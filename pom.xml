@@ -17,6 +17,13 @@
 		<sonar.organization>shailendracss</sonar.organization>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 		<sonar.login>08709c8a22213753d900c6883706798a9c4278e4</sonar.login>
+
+
+		<jacoco.version>0.8.3</jacoco.version>
+		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+		<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+		<sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
+		<sonar.language>java</sonar.language>
 	</properties>
 
 
@@ -24,13 +31,7 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>3.8.1</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.testng</groupId>
-			<artifactId>testng</artifactId>
-			<version>6.8</version>
+			<version>4.11</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -45,15 +46,45 @@
 					<artifactId>maven-compiler-plugin</artifactId>
 					<version>3.8.1</version>
 				</plugin>
+				
 				<plugin>
 					<groupId>org.sonarsource.scanner.maven</groupId>
 					<artifactId>sonar-maven-plugin</artifactId>
 					<version>3.6.0.1398</version>
 				</plugin>
+				
 				<plugin>
 					<groupId>org.jacoco</groupId>
 					<artifactId>jacoco-maven-plugin</artifactId>
 					<version>0.8.4</version>
+
+					<configuration>
+						<skip>${maven.test.skip}</skip>
+						<destFile>${basedir}/target/coverage-reports/jacoco-unit.exec</destFile>
+						<dataFile>${basedir}/target/coverage-reports/jacoco-unit.exec</dataFile>
+						<output>file</output>
+						<append>true</append>
+						<excludes>
+							<exclude>*MethodAccess</exclude>
+						</excludes>
+					</configuration>
+					<executions>
+						<execution>
+							<id>jacoco-initialize</id>
+							<goals>
+								<goal>prepare-agent</goal>
+							</goals>
+							<phase>test-compile</phase>
+						</execution>
+						<execution>
+							<id>jacoco-site</id>
+							<phase>verify</phase>
+							<goals>
+								<goal>report</goal>
+							</goals>
+						</execution>
+					</executions>
+
 				</plugin>
 			</plugins>
 		</pluginManagement>
@@ -67,23 +98,7 @@
 			</activation>
 			<build>
 				<plugins>
-				
-				
-				<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-surefire-plugin</artifactId>
-						<version>2.18.1</version>
-						<configuration>
-							<suiteXmlFiles>
-								<!-- TestNG suite XML files -->
-								<!-- <file>testNg_UI_Verification.xml</file> -->
-								<!-- <file></file> -->
-								<file>testNg.xml</file>
-							</suiteXmlFiles>
-						</configuration>
-					</plugin>
-				
-				
+
 					<plugin>
 						<groupId>org.jacoco</groupId>
 						<artifactId>jacoco-maven-plugin</artifactId>
