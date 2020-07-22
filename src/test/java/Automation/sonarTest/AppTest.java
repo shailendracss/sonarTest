@@ -17,10 +17,11 @@ public class AppTest{
 		o.m2(19);
 	}
 	
-	@Test
+	//@Test
 	public void t3_test() {
 		App o = new App();
-		o.m3(17);
+		//o.m3(17);
 		o.m3(19);
+		o.getDataFromDB();
 	}
 }
